@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donor Dashboard - RapidBlood</title>
+  <link rel="stylesheet" href="css/donor-dashboard.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <span class="logo"><i class="fas fa-heartbeat"></i> RapidBlood</span>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="donor-registration.html">Donor Registration</a></li>
+        <li><a href="recipient-registration.html">Recipient Registration</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="welcome-section">
+          <div class="user-avatar">
+            <i class="fas fa-user-circle"></i>
+          </div>
+          <div class="user-info">
+            <h2>Welcome, <span id="donorName">Donor</span></h2>
+            <p>Thank you for being a life-saver!</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <div class="profile-section">
+          <h3><i class="fas fa-user"></i> Profile Information</h3>
+          <div class="profile-grid">
+            <div class="profile-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <label>Email:</label>
+                <span id="donorEmail"></span>
+              </div>
+            </div>
+            <div class="profile-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <label>Phone:</label>
+                <span id="donorPhone"></span>
+              </div>
+            </div>
+            <div class="profile-item">
+              <i class="fas fa-tint"></i>
+              <div>
+                <label>Blood Group:</label>
+                <span id="donorBlood"></span>
+              </div>
+            </div>
+            <div class="profile-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <label>Location:</label>
+                <span id="donorLocation"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="availability-section">
+          <h3><i class="fas fa-toggle-on"></i> Update Availability</h3>
+          <div class="availability-control">
+            <select id="availabilitySelect" onchange="updateAvailability(this.value)">
+              <option value="available">Available for Donation</option>
+              <option value="unavailable">Currently Unavailable</option>
+            </select>
+            <p class="availability-note">Your availability status helps recipients find you quickly</p>
+          </div>
+        </div>
+
+        <div class="requests-section">
+          <h3><i class="fas fa-bell"></i> Blood Requests Received</h3>
+          <div id="requestList" class="requests-list">
+            <div class="no-requests">
+              <i class="fas fa-inbox"></i>
+              <p>No blood requests at the moment</p>
+              <span>You'll be notified when someone needs your blood type</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-section">
+          <h3><i class="fas fa-comments"></i> Chat with Recipients</h3>
+          <div class="chat-container">
+            <div class="chat-users">
+              <h4>Available Recipients</h4>
+              <div id="recipientList" class="user-list">
+                <!-- Recipients will be loaded here -->
+              </div>
+            </div>
+            <div class="chat-messages">
+              <div id="chatHeader" class="chat-header">
+                <span>Select a recipient to start chatting</span>
+              </div>
+              <div id="messageArea" class="message-area">
+                <div class="no-chat-selected">
+                  <i class="fas fa-comments"></i>
+                  <p>Choose a recipient from the list to start a conversation</p>
+                </div>
+              </div>
+              <div class="message-input">
+                <input type="text" id="messageInput" placeholder="Type your message..." disabled>
+                <button id="sendButton" onclick="sendMessage()" disabled>
+                  <i class="fas fa-paper-plane"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-actions">
+          <button onclick="logout()" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

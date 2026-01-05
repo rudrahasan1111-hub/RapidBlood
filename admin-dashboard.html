@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - RapidBlood</title>
+  <link rel="stylesheet" href="css/admin-dashboard.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <span class="logo"><i class="fas fa-heartbeat"></i> RapidBlood</span>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="donor-registration.html">Donor Registration</a></li>
+        <li><a href="recipient-registration.html">Recipient Registration</a></li>
+        <li><a href="chat.html">Chat</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <div class="dashboard-container">
+      <div class="dashboard-header">
+        <div class="welcome-section">
+          <div class="admin-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div class="admin-info">
+            <h2>Admin Dashboard</h2>
+            <p>Manage RapidBlood system and monitor user activity</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-content">
+        <div class="stats-section">
+          <h3><i class="fas fa-chart-bar"></i> System Statistics</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-content">
+                <h4>Total Donors</h4>
+                <span id="totalDonors">0</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon">
+                <i class="fas fa-search"></i>
+              </div>
+              <div class="stat-content">
+                <h4>Total Recipients</h4>
+                <span id="totalRecipients">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="donors-section">
+          <h3><i class="fas fa-user-plus"></i> Registered Donors</h3>
+          <div class="table-container">
+            <table id="donorTable" class="data-table">
+              <thead>
+                <tr>
+                  <th><i class="fas fa-user"></i> Name</th>
+                  <th><i class="fas fa-tint"></i> Blood Group</th>
+                  <th><i class="fas fa-map-marker-alt"></i> Location</th>
+                  <th><i class="fas fa-phone"></i> Phone</th>
+                </tr>
+              </thead>
+              <tbody id="donorTableBody">
+                <!-- Donor data will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="recipients-section">
+          <h3><i class="fas fa-search"></i> Registered Recipients</h3>
+          <div class="table-container">
+            <table id="recipientTable" class="data-table">
+              <thead>
+                <tr>
+                  <th><i class="fas fa-user"></i> Name</th>
+                  <th><i class="fas fa-tint"></i> Blood Group</th>
+                  <th><i class="fas fa-map-marker-alt"></i> Location</th>
+                  <th><i class="fas fa-phone"></i> Phone</th>
+                </tr>
+              </thead>
+              <tbody id="recipientTableBody">
+                <!-- Recipient data will be loaded here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="dashboard-actions">
+          <button onclick="logout()" class="logout-btn">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    // Load dashboard function
+    function loadDashboard() {
+      const donors = JSON.parse(localStorage.getItem('donors') || '[]');
+      const recipients = JSON.parse(localStorage.getItem('recipients') || '[]');
+      
+      // Update stats
+      document.getElementById('totalDonors').textContent = donors.length;
+      document.getElementById('totalRecipients').textContent = recipients.length;
+      
+      // Load donor table
+      const donorTableBody = document.getElementById('donorTableBody');
+      donorTableBody.innerHTML = donors.map(donor => `
+        <tr>
+          <td><i class="fas fa-user"></i> ${donor.name || 'N/A'}</td>
+          <td>${donor.blood || donor.bloodGroup || donor.bloodType || 'N/A'}</td>
+          <td><i class="fas fa-map-marker-alt"></i> ${donor.location || 'N/A'}</td>
+          <td><i class="fas fa-phone"></i> ${donor.phone || 'N/A'}</td>
+        </tr>
+      `).join('');
+      
+      // Load recipient table
+      const recipientTableBody = document.getElementById('recipientTableBody');
+      recipientTableBody.innerHTML = recipients.map(recipient => `
+        <tr>
+          <td><i class="fas fa-user"></i> ${recipient.name || 'N/A'}</td>
+          <td>${recipient.blood || recipient.bloodGroup || recipient.bloodType || 'N/A'}</td>
+          <td><i class="fas fa-map-marker-alt"></i> ${recipient.location || 'N/A'}</td>
+          <td><i class="fas fa-phone"></i> ${recipient.phone || 'N/A'}</td>
+        </tr>
+      `).join('');
+    }
+    
+    // Logout function
+    function logout() {
+      localStorage.removeItem('currentUser');
+      window.location.href = 'login.html';
+    }
+    
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check admin access
+      const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      if (!currentUser || currentUser.role !== 'admin') {
+        window.location.href = 'login.html';
+        return;
+      }
+      
+      // Load dashboard
+      loadDashboard();
+    });
+  </script>
+  <script src="js/script.js"></script>
+</body>
+</html>

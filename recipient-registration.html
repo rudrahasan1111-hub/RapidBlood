@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipient Registration - RapidBlood</title>
+  <link rel="stylesheet" href="css/recipient-registration.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <span class="logo"><i class="fas fa-heartbeat"></i> RapidBlood</span>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="donor-registration.html">Donor Registration</a></li>
+        <li><a href="recipient-registration.html" class="active">Recipient Registration</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <div class="form-container">
+      <div class="form-header">
+        <div class="form-icon">
+          <i class="fas fa-search"></i>
+        </div>
+        <h2>Find Blood Donors</h2>
+        <p>Register to connect with available blood donors in your area</p>
+      </div>
+      
+      <form onsubmit="registerRecipient(event)" class="registration-form">
+        <div class="form-group">
+          <label for="name"><i class="fas fa-user"></i> Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="phone"><i class="fas fa-phone"></i> Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a password" required />
+        </div>
+        
+        <div class="form-group">
+          <label for="confirm"><i class="fas fa-lock"></i> Confirm Password</label>
+          <input type="password" id="confirm" name="confirm" placeholder="Confirm your password" required />
+        </div>
+
+        <div class="form-group">
+          <label for="blood"><i class="fas fa-tint"></i> Required Blood Group</label>
+          <select id="blood" name="blood" required>
+            <option value="">Select required blood group</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="location"><i class="fas fa-map-marker-alt"></i> Location</label>
+          <input type="text" id="location" name="location" placeholder="Enter your city (e.g. Dhaka)" required />
+        </div>
+
+        <button type="submit" class="register-btn">
+          <i class="fas fa-search"></i> Register as Recipient
+        </button>
+      </form>
+      
+      <div class="form-footer">
+        <p>Already have an account? <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login here</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

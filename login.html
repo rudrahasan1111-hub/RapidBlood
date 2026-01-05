@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - RapidBlood</title>
+  <link rel="stylesheet" href="css/login.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <span class="logo"><i class="fas fa-heartbeat"></i> RapidBlood</span>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="login.html" class="active">Login</a></li>
+        <li><a href="donor-registration.html">Donor Registration</a></li>
+        <li><a href="recipient-registration.html">Recipient Registration</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <div class="login-container">
+      <div class="login-header">
+        <div class="login-icon">
+          <i class="fas fa-user-circle"></i>
+        </div>
+        <h2>Welcome Back</h2>
+        <p>Login to your RapidBlood account</p>
+      </div>
+      
+      <form onsubmit="loginUser(event)" class="login-form">
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+          <input type="email" id="email" required placeholder="Enter your email" />
+        </div>
+
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> Password</label>
+          <input type="password" id="password" required placeholder="Enter your password" />
+        </div>
+
+        <div class="form-group">
+          <label for="loginType"><i class="fas fa-users"></i> Login As</label>
+          <select id="loginType" required>
+            <option value="">Select your role</option>
+            <option value="donor">Donor</option>
+            <option value="recipient">Recipient</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <button type="submit" class="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </form>
+      
+      <div class="login-footer">
+        <p>Don't have an account?</p>
+        <div class="register-links">
+          <a href="donor-registration.html" class="register-link donor">
+            <i class="fas fa-user-plus"></i> Register as Donor
+          </a>
+          <a href="recipient-registration.html" class="register-link recipient">
+            <i class="fas fa-search"></i> Register as Recipient
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
